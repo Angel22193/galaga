@@ -90,4 +90,33 @@ int main(){
             enemy.shape.setPosition(rand() % (WIDTH - ENEMY_SIZE), 0);
         }
      }
+
+     //Mover balas
+     for(auto& bullet : bullets) {
+        bullet.shape.move(0, -bullet.speed);
+        if(bullet.shape.getPosittion().y < 0){
+            bullets.erase(std::remove(bullets.begin(),bullets.end(), bullet), bullets.end());
+        }
+     }
+     //Chequear colisiones
+     for(auto& enemy : enemies){
+        for(auto& bullet : bullets){
+            if(enemies.shape.getGlobelBounds().intersects(bullet.shape.getGlobalBounds())){
+                score++;
+                enemies.erase(std::remove(enemies.begin(,enemis.end(), enemy),enemies.end());
+            }
+        }
+     }
+     //Dibujar todo
+     window.clear();
+     window.draw(player.shape);
+     for(auto& enemy : enemies){
+        window.draw(enemy.shape);
+     }
+     for(auto& bullet : bullets){
+        window.draw(bullet.shape);
+     }
+     window.display();
+}
+ return 0;
 }
