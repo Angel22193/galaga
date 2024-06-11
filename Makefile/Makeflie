@@ -1,0 +1,3 @@
+galaga: galaga.cpp
+   g++ -c galaga.cpp -o galaga.o -lfsml-window-lsfml-system
+   g++ galaga.o -o galaga - lsfml-graphics-lsfml-system
